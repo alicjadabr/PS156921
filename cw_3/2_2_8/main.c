@@ -1,23 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-float pierw(float n)
+int pierw(int n)
 {
-  float e=0.01, x_k, xk_p1;
-    xk_p1 = n * 0.5;
-    while(x_k - xk_p1 > e || xk_p1 - x_k > e)
+    int res = 0;
+    for(int i=0; i*i <=n ;i++)
     {
-        x_k = xk_p1;
-        xk_p1= 0.5*(n/x_k+x_k);
+        res=i;
     }
-    return xk_p1;
+    return res;
 }
 
 int main()
 {
-    float x;
-    scanf("%f", &x);
-    float res = pierw(x);
-    printf("%f", res);
+    int x;
+    scanf("%d", &x);
+    int res = pierw(x);
+    printf("%d", res);
     return 0;
 }

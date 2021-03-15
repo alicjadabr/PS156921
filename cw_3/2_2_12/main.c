@@ -1,26 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-float potega(float a, float n)
+int potega(int a, int m)
 {
-    float x=1;
-    for(int i=1; i<=n; i++)
+    int res = 0;
+    for(int i=1; pow(i, m) <= a; i++)
     {
-        x *= a;
+        res = i;
     }
-    return x;
+    return res;
 }
 
-float sum(float n, float m)
+int sum(int n, int m)
 {
-    float x=0, sum=0;
-    for (int i = 0; i <= n; i++)
+    int sum = 0;
+    for(int i=0; i <= n; i++)
     {
-        for (int j = 0; j >= potega(j,m); j++)
-        {
-            x = j;
-        }
-        sum += x;
+        sum += potega(i, m);
     }
 
     return sum;
@@ -28,9 +24,11 @@ float sum(float n, float m)
 
 int main()
 {
-    float  m, n;
-    scanf("%f\n%f", &m, &n);
-    float res = sum(n,m);
-    printf("%f", res);
+    int  n, m;
+    scanf("%d\n%d", &n, &m);
+    int res = sum(n,m);
+    printf("%d", res);
+    printf("\n Dla n = 4 i m = 2 suma ciagu wynosi %d", sum(4, 2));
+    printf("\n Dla n = 9 i m = 3 suma ciagu wynosi %d", sum(9, 3));
     return 0;
 }
