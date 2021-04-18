@@ -5,7 +5,9 @@
 
 int sum(int n)
 {
-    if(n >= 0 || n <= 10000)
+    if(0 <= n <= 9)
+        return n;
+    if(n >= 0 && n <= 10000)
        return n%10 + sum(n/10);
 
     return -1;
