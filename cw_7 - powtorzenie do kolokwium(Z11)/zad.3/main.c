@@ -3,11 +3,10 @@
 
 float * memory()
 {
-    float *z1 = malloc(sizeof(float));
-    float *z2 = malloc(sizeof(float));
-    *z1 = 2.8;
-    *z2 = 3.2;
-    return z2;
+    float *tab= malloc(2*sizeof(float));
+    *tab = 2.8;
+    *(tab+1) = 3.2;
+    return tab+1;
 }
 
 int main()
