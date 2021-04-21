@@ -30,21 +30,26 @@ void foo_c(unsigned int n, int *tab)
 }
 
 
-int foo_d(unsigned int n, int *tab)
+int znajdz_max(int n, int *tab)
 {
-    int max, max_i;
-    for (int i=n-1; i>0; i--)
+    int max = 0;
+    for(int i=1; i<n; i++)
     {
-        max = tab[0];
-        max_i = 0;
-        for (int j= 1; j<=i; j++)
-            if (tab[i]>max )
-            {
-                max = tab[i];
-                max_i = i;
-            }
-        tab[max_i] = tab[i];
-        tab[i] = max;
+        if(*(tab+i)>tab[max])
+            max = i; // max bêdzie indeksem najwiêkszego elementu
+    }
+   return max;
+}
+
+void foo_d(int n, int *tab)
+{
+    int x, temp;
+    for(int i=0; i<n-1; i++)
+    {
+        x = znajdz_max(n-i, tab);  // x = indeks najwiekszego elementu
+        temp = tab[n-i-1]; //zmienna tymczasowa przechowuj¹ca wartoœæ ostatniego elementu tab w danym obrocie
+        tab[n-i-1] = tab[x]; //ostatnie miejsce zajmuje najwiekszy element
+        tab[x] = temp; // miejsce najwiekszego zajmuje przedtem ostatni element
     }
 }
 
@@ -95,17 +100,16 @@ int main()
     wyswietl(4, tab3);
     printf("------------ \n");
 
-    int *tab4 = malloc(6*sizeof(int));
+    int *tab4 = malloc(5*sizeof(int));
     *(tab4)=20;
     *(tab4+1)=-12;
-    *(tab4+2)=32;
-    *(tab4+3)=-44;
-    *(tab4+4)=3;
-    *(tab4+5)=22;
-    wyswietl(6, tab4);
-    foo_d(6, tab4);
+    *(tab4+2)=-44;
+    *(tab4+3)=-443;
+    *(tab4+4)=22;
+    wyswietl(5, tab4);
+    foo_d(5, tab4);
     printf("Powyzsza tablica posortowana rosnaco: \n");
-    wyswietl(6, tab4);
+    wyswietl(5, tab4);
 
     return 0;
 
